@@ -1,18 +1,26 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/LoginView.vue'
 
-import login from './pages/login.vue';
+
+
 
 const routes = [
   {
-    path: '/login',
-    name: 'login',
+    path: '/',
+    name: 'home',
     component: HomeView
-  }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginView
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 })
 
 export default router

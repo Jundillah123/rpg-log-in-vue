@@ -1,11 +1,11 @@
 <template>
 <div class="login-box">
-  <h1>Log<span>In</span></h1>
+  <!-- <h1>Log<span>In</span></h1>
   <form id="login">
     <input type="text" id="username" name="username" placeholder="username" required><br>
     <input type="password" id="password" name="password" placeholder="password" required><br>
     <input type="submit" value="login">
-  </form>
+  </form> -->
 
 </div>
 </template>
@@ -44,8 +44,4 @@ input[type="submit"]:hover {
   }
 </style>
 <script>
-export default {
-  name: 'App',
-  components: {},
-};
 </script>
