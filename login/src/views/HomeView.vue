@@ -10,12 +10,19 @@
   </template>
   
   <script>
+  import axios from 'axios';
+
+
   export default{
       methods: {
-          logout(){
-              this.$store.dispatch('logout', this.$router)
-          }
-      },
+       this.$axios.post('/logout', {
+        email:this.email,
+        password: this.password
+       }).then(response = > {
+         this.deleteUserData();
+        this.$store.dispatch('logout', this.$router)
+  })
+}
   }
 </script>
 <style>

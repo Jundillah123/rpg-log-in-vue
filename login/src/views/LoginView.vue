@@ -83,8 +83,6 @@ import Cookies from 'js-cookie';
                     Cookies.set("userdata", forcookies, {expires: 1});
                     this.$store.commit("SET_LOGIN", forcookies )
                     this.$router.push({path: '/home'})
-                    // location.reload();
-                    // location.href = location.href;
                     
                 })
             }
