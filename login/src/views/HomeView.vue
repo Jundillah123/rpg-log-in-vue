@@ -1,47 +1,51 @@
 <template>
-<div class="login-box">
-  <!-- <h1>Log<span>In</span></h1>
-  <form id="login">
-    <input type="text" id="username" name="username" placeholder="username" required><br>
-    <input type="password" id="password" name="password" placeholder="password" required><br>
-    <input type="submit" value="login">
-  </form> -->
-
-</div>
-</template>
-<style>
-span{
-  color: blue;
-}
-.login-box{
-width: 300px;
-padding: 20px;
-margin: 0 auto;
-background-color: #fff;
-border: 1px solid #ccc;
-border-radius: 10px;
-box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-input[type="text"], input[type="password"] {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 5px solid #bfe797;
-  border-radius: 5px;
-  font-size: 14px;
-}
-input[type="submit"]{
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-  color: rgb(46, 43, 43);
-  font-size: 16px;
-  cursor: pointer;
+   <header>
+    <nav>
+     <h1>Klik logout untuk keluar <br> 
+          <span>⬇</span>
+    </h1>
+          <button @click="logout">Logout</button>
+    </nav>
+  </header>
+  </template>
   
-}
-input[type="submit"]:hover {
-   background-color:  #45a049;
+  <script>
+  export default{
+      methods: {
+          logout(){
+              this.$store.dispatch('logout', this.$router)
+          }
+      },
   }
-</style>
-<script>
 </script>
+<style>
+header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  h1{
+    font-size: 20px;
+    color: cadetblue;
+    font-style: inherit
+  }
+  span{
+    font-size: 60px;
+    color: cadetblue;
+  }
+}
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+</style>
+
+
+  

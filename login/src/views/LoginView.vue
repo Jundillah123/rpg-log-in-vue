@@ -1,10 +1,18 @@
 <template>
     <div class="login-box">
       <h1>Log<span>In</span></h1>
-      <form @submit="" id="login">
-        <input type="text" id="username" name="username" placeholder="username" required><br>
-        <input type="password" id="password" name="password" placeholder="password" required><br>
-        <input type="submit" value="login">
+      <form @submit.prevent ="onSubmit">
+        <div>
+        <label for="username">username</label>
+        <input type="text"v-model="email"><br>
+    </div>
+    <div>
+        <label for="password">password</label>
+        <input type="password" id="password" v-model="password" required><br>
+    </div>
+        <input type="submit" id="kirim"><br>
+        <p>Don`t have account?</p>
+        <RouterLink to="/register">Register here</RouterLink>
       </form>
     
     </div>
@@ -44,5 +52,43 @@
       }
     </style>
     <script>
+import Cookies from 'js-cookie';
+
+    export default {
+        data() {
+            return {
+                email: '',
+                password: '',
+               
+            }
+        },
+        methods: {
+            onSubmit() {
+                this.$axios.post("/auth/login", {
+                    email: this.email,
+                    password: this.password
+                }).then(response => {
+                    console.log(response);
+                    this.getDataUser(response.data)
+                })
+            },
+            getDataUser(data){
+                this.$axios.get("/auth/profile",{
+                 headers: {
+                    Authorization: 'bearer ' + data.access_token
+                 }
+                }).then(res => {
+                    let userdata = Object.assign(res.data, data)
+                    let forcookies = JSON.stringify(userdata)
+                    Cookies.set("userdata", forcookies, {expires: 1});
+                    this.$store.commit("SET_LOGIN", forcookies )
+                    this.$router.push({path: '/home'})
+                    // location.reload();
+                    // location.href = location.href;
+                    
+                })
+            }
+        }
+    }
     </script>
     
