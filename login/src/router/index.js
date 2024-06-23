@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue';
-// import AboutView from '../views/AboutView.vue';
+import AboutView from '../views/AboutView.vue';
 import store from '@/store';
 // import RegisterPage from '@/components/RegisterPage.vue';
 
@@ -27,14 +27,14 @@ const routes = [
       requireAuth: true
   }
   },
-//   {
-//   path: '/about',
-//   name: 'about',
-//   component:AboutView,
-//   meta: {
-//     requireAuth: true
-//   }
-// }
+  {
+  path: '/about',
+  name: 'about',
+  component:() => import("../views/AboutView.vue"),
+  meta: {
+    requireAuth: true
+  }
+}
 
 
 ]
@@ -49,13 +49,13 @@ router.beforeEach((to, from,  next) => {
     next('/')
     }
   }
-  if(to.matched.some(record => record.meta.guest)){
+  if (to.matched.some((record) => record.meta.guest)){
     if(store.state.userdata !== null){
       next('/home')
     }
   }
   next()
-})
+});
 
 
 export default router

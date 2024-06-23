@@ -19,13 +19,35 @@
              <br>
   <div v-if="user" class="animated-text">
     <img :src="user.avatar" alt="User Avatar"><br>
-    <p>Nama: {{ user.name }}</p>
+    <p>Nama: {{ user.role}}</p>
     <p>Email: {{ user.email }}</p>
   </div>
 
   <div>
-
-    
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Title</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in dataProduct" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>
+            <img :src="item.images" style="width: 50px" alt="" />
+          </td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.price }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   </template>
   
@@ -37,14 +59,16 @@ import { mapGetters } from 'vuex';
 
   export default {
     name:"HomeView",
-    components: {
-      
-    },
+  
     data() {
     return {
       showText: false,
-      animatedText: 'Selamat Datang' // Teks yang ingin dianimasikan
-    };
+      animatedText: 'Selamat Datang', // Teks yang ingin dianimasikan,
+      dataProduct:[],
+    }
+  },
+  mounted() {
+    this.getListDataProduct();
   },
     methods: {
       logout(){
@@ -52,8 +76,29 @@ import { mapGetters } from 'vuex';
         cookie.remove('userdata');
         this.$store.commit("SET_LOGOUT");
         this.$router.push({path: "/"})
-       
-      },
+       },
+       getListDataProduct() {
+        this.$axios
+        .get("product", {
+          params: {
+            limit: 20,
+            offset:5,
+          },
+        }).then((res) => {
+          let productData = res.data;
+          console.log("ini data asli: ", productData);
+          productData.forEach((item) => {
+            this.dataProduct.push({
+              category: item.category.name,
+              name: item.title,
+              price: item.price,
+              description: item.description,
+              images: item.category.image,
+            });
+          });
+          console.log("ini data hasil manipulasi:", this.dataProduct);
+        })
+       }
     },
     computed: {
       ...mapGetters(["getuser"]),
@@ -69,8 +114,6 @@ import { mapGetters } from 'vuex';
     }, 1000); // Ganti dengan delay yang sesuai
   }
 };
-  
-  
 </script>
 <style scoped>
 .container {

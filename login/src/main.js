@@ -23,9 +23,7 @@ if(cookie.getJSON('userdata') !== undefined){
     (config) => {
         
         config.headers['Authorization'] = `Bearer ${auth.access_token}`;
-        
-     
-      return config;
+        return config;
     },
     (error) => Promise.reject(error)
   );

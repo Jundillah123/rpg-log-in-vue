@@ -4,9 +4,13 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     userdata: null,
+    user: null,
    
   },
   getters: {
+    getUser(state){
+      return state.user;
+    },
 
   },
   mutations: {
@@ -19,7 +23,7 @@ export default createStore({
       state.user = null;
     },
     SET_USER(state, user){
-      state.user=null;
+      state.user= user ;
     },
   },
 

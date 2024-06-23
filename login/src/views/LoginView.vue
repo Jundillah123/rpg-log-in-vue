@@ -12,6 +12,8 @@
     </div>
         <input type="submit" value="Masuk"><br>
       </form>
+
+      
     
     </div>
     </template>
@@ -55,8 +57,8 @@ import cookie from 'js-cookie';
     export default {
         data() {
             return {
-                email: '',
-                password: '',
+                email: 'john@mail.com',
+                password: 'changeme',
                 
                
             }
@@ -68,13 +70,13 @@ import cookie from 'js-cookie';
                     password: this.password
                 }).then(response => {
                     console.log(response);
-                    this.getDataUser(response.data)
-                })
+                    this.getDataUser(response.data);
+                });
             },
             getDataUser(data){
-                this.$axios.get("/auth/profile",{
+                this.$axios.get("auth/profile",{
                  headers: {
-                    Authorization: 'bearer ' + data.access_token
+                    Authorization: 'Bearer ' + data.access_token
                  }
                 }).then(res => {
                     let userdata = Object.assign(res.data, data)
