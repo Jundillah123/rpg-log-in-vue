@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import cookies from 'js-cookie'
+
 
 export default createStore({
   state: {
@@ -10,20 +10,18 @@ export default createStore({
 
   },
   mutations: {
+      
     SET_LOGIN(state, payload){
         state.userdata = payload;
     },
     SET_LOGOUT(state){
-      cookies.remove("userdata")
       state.userdata = null;
-    }
+      state.user = null;
+    },
+    SET_USER(state, user){
+      state.user=null;
+    },
   },
-  actions: {
-    logout({commit}, router){
-      if(confirm('sudah logout')){
-        commit('SET_LOGOUT')
-        router.push({path: '/login'})
-      }
-    }
-  }
+
+ 
 })

@@ -10,9 +10,7 @@
         <label for="password">password</label>
         <input type="password" id="password" v-model="password" required><br>
     </div>
-        <input type="submit" id="kirim"><br>
-        <p>Don`t have account?</p>
-        <RouterLink to="/register">Register here</RouterLink>
+        <input type="submit" value="Masuk"><br>
       </form>
     
     </div>
@@ -52,13 +50,14 @@
       }
     </style>
     <script>
-import Cookies from 'js-cookie';
+import cookie from 'js-cookie';
 
     export default {
         data() {
             return {
                 email: '',
                 password: '',
+                
                
             }
         },
@@ -80,7 +79,7 @@ import Cookies from 'js-cookie';
                 }).then(res => {
                     let userdata = Object.assign(res.data, data)
                     let forcookies = JSON.stringify(userdata)
-                    Cookies.set("userdata", forcookies, {expires: 1});
+                    cookie.set("userdata", forcookies, {expires: 1});
                     this.$store.commit("SET_LOGIN", forcookies )
                     this.$router.push({path: '/home'})
                     

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
-import Cookies from 'js-cookie'
+import cookie from 'js-cookie'
 
 
 
@@ -16,8 +16,8 @@ const axiosInstance = axios.create({
         }
 })
 
-if(Cookies.getJSON('userdata') !== undefined){    
-    let auth = Cookies.getJSON('userdata')
+if(cookie.getJSON('userdata') !== undefined){    
+    let auth = cookie.getJSON('userdata')
     store.commit('SET_LOGIN', auth)
   axiosInstance.interceptors.request.use(
     (config) => {
