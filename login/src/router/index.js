@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue';
-import AboutView from '../views/AboutView.vue';
 import store from '@/store';
 // import RegisterPage from '@/components/RegisterPage.vue';
 
@@ -13,7 +12,7 @@ import store from '@/store';
 const routes = [
   {
     path: '/',
-    name: '/',
+    name: 'login',
     component: LoginView,
     meta: {
       guest: true
@@ -33,11 +32,9 @@ const routes = [
   component:() => import("../views/AboutView.vue"),
   meta: {
     requireAuth: true
-  }
-}
-
-
-]
+  },
+},
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

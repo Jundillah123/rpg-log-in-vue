@@ -23,7 +23,7 @@
     <p>Email: {{ user.email }}</p>
   </div>
 
-  <div>
+  <div class="tabel" style="width: 400px;">
     <table>
       <thead>
         <tr>
@@ -97,8 +97,8 @@ import { mapGetters } from 'vuex';
             });
           });
           console.log("ini data hasil manipulasi:", this.dataProduct);
-        })
-       }
+        });
+       },
     },
     computed: {
       ...mapGetters(["getuser"]),

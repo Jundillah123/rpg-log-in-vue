@@ -13,8 +13,7 @@ export default createStore({
     },
 
   },
-  mutations: {
-      
+  mutations: {   
     SET_LOGIN(state, payload){
         state.userdata = payload;
     },
